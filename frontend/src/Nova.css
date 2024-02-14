@@ -1,0 +1,53 @@
+.nova-container {
+    /* Add styling for the container */
+  }
+  
+  .nova-content {
+    /* Add styling for the content area */
+    padding: 20px;
+  }
+  
+  .nova-textarea {
+    width: 100%;
+    min-height: 150px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .nova-submit-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #cfb53b;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nova-submit-button:hover {
+    background-color: #b59a4c;
+  }
+  
+  .nova-loading {
+    /* Add styling for the loading component */
+    color: #cfb53b;
+  }
+  
+  .nova-results {
+    /* Add styling for the results display */
+    margin-top: 20px;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .nova-error {
+    /* Add styling for the error message */
+    margin-top: 20px;
+    color: red;
+  }
+  

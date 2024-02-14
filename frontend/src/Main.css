@@ -1,0 +1,60 @@
+/* Main.css */
+
+/* Base styles for the card to ensure desktop appearance is unchanged */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px; /* Adjust based on your design */
+  margin: auto;
+}
+
+/* Adjustments for mobile view */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 0; /* Removes curvature for mobile */
+    max-height: 120px; /* Adjust based on your design */
+  }
+
+  .card-image {
+    width: 50%;
+    height: auto;
+    border-radius: 0; /* Ensures the image is rectangular */
+  }
+
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding: 0 10px;
+  }
+
+  .card-button {
+    background-color: #E1C564; /* Example button color, adjust as needed */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .card-button:hover {
+    background-color: #d4b455;
+  }
+
+  .icon {
+    display: none; /* Hides the icon on mobile */
+  }
+}

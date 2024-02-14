@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Circle dots rotating animation */
+@keyframes dotRotating {
+    0% {
+      background-color: #cfb53b; /* Active dot color (gold) */
+    }
+    100% {
+      background-color: #4b5563; /* Inactive dot color (dark gray) */
+    }
+  }
+  
+  .dot-flashing-container {
+    position: relative;
+
+    width: 50px;  /* Adjust the size of the container if needed */
+    height: 50px;
+  }
+  
+  .dot-flashing {
+    position: absolute;
+    width: 8px;  /* Reduced size of the dots */
+    height: 8px; /* Reduced size of the dots */
+    border-radius: 50%;
+    background-color: #4b5563; /* Initial color of the dots (dark gray) */
+    animation: dotRotating 1s infinite;
+  }
+  
+  /* Position each dot around the circle and set animation delays */
+  .dot-flashing {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .dot-flashing:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(0deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0s;
+  }
+  .dot-flashing:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(45deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.125s;
+  }
+  .dot-flashing:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(90deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.25s;
+  }
+  .dot-flashing:nth-child(4) {
+    transform: translate(-50%, -50%) rotate(135deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.375s;
+  }
+  .dot-flashing:nth-child(5) {
+    transform: translate(-50%, -50%) rotate(180deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.5s;
+  }
+  .dot-flashing:nth-child(6) {
+    transform: translate(-50%, -50%) rotate(225deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.625s;
+  }
+  .dot-flashing:nth-child(7) {
+    transform: translate(-50%, -50%) rotate(270deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.75s;
+  }
+  .dot-flashing:nth-child(8) {
+    transform: translate(-50%, -50%) rotate(315deg) translate(20px); /* Adjusted distance */
+    animation-delay: 0.875s;
+  }
+
+  .loading-background {
+    background-color: rgba(0, 0, 0, 0.3); /* Black color with 50% opacity */
+    background-size: cover; /* Cover the entire container with the image */
+    background-position: center; /* Center the image in the container */
+    background-repeat: no-repeat; /* Do not repeat the image */
+  }
+  
+  .loading-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Black tint with 60% opacity */
+    z-index: 1;
+  }
+
+  .dot-flashing-container {
+
+    z-index: 4; /* Ensure the loading dots are above the tint */
+    /* ... other styles ... */
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      color: #cfb53b;
+    }
+    50% {
+      color: #fff;
+    }
+  }
+  
+  .back-button {
+    transition: all 0.3s ease;
+  }
+  
+  .back-button .back-icon {
+    font-size: 24px; /* Default size of the icon */
+    transition: font-size 0.3s ease;
+  }
+  
+  .back-button:hover .back-icon {
+    animation: pulse 1s infinite;
+    font-size: 30px; /* Larger size on hover */
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      color: #cfb53b;
+    }
+    50% {
+      color: #fff;
+    }
+  }
+
+
+  
+  .popup-icon .icon {
+    font-size: 24px; /* Default size of the icon */
+    transition: font-size 0.3s ease, color 0.3s ease;
+    color: #cfb53b; /* Default color */
+  }
+  
+  .popup-icon:hover .icon {
+    animation: pulse 1s infinite;
+    font-size: 30px; /* Larger size on hover */
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+  
+  .popup-icon .icon {
+    font-size: 24px; /* Default size of the icon */
+    transition: font-size 0.3s ease, transform 0.3s ease;
+    color: #cfb53b; /* Default color */
+  }
+  
+  .popup-icon:hover .icon {
+    animation: pulse 1s infinite;
+    font-size: 30px; /* Larger size on hover */
+  }
+
+  /* In your global CSS file */
+.background-tint {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-size: cover;
+  background-position: center;
+}
+
+
