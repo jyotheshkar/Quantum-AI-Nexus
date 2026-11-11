@@ -6,10 +6,12 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import backgroundImage from './images/image13.jpg'; // Make sure this path is correct.
 import useObjectUrl from './useObjectUrl';
+import { imageSelectionError, SUPPORTED_IMAGE_TYPES } from './imageValidation';
 
 const Vision = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [error, setError] = useState('');
   const previewUrl = useObjectUrl(selectedImage);
   const results = {
     mode: 'illustrative_only',
@@ -22,12 +24,15 @@ const Vision = () => {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedImage(file);
-    } else {
+    const file = e.target.files[0] || null;
+    const problem = imageSelectionError(file);
+    setError(problem);
+    if (problem) {
       setSelectedImage(null);
+      e.target.value = '';
+      return;
     }
+    setSelectedImage(file);
   };
 
 
@@ -53,8 +58,10 @@ const Vision = () => {
               <label className="flex flex-col items-center justify-center bg-[#cfb53b] text-black rounded-lg shadow-lg cursor-pointer p-6 hover:bg-opacity-80 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
                 <UploadFileIcon fontSize="large" style={{ color: 'black' }}/>
                 <span>Upload Image</span>
-                <input type="file" onChange={handleImageChange} accept="image/*" className="hidden" />
+                <input type="file" onChange={handleImageChange} accept={SUPPORTED_IMAGE_TYPES.join(',')} className="hidden" />
               </label>
+              <p className="text-[#cfb53b]">PNG, JPEG, WebP, GIF or AVIF. Maximum 5 MiB.</p>
+              {error && <p role="alert" className="text-red-300">{error}</p>}
 
               <button disabled title="Camera capture is not implemented in this prototype" className="flex flex-col items-center justify-center bg-[#cfb53b] text-black rounded-lg shadow-lg p-6 opacity-60 cursor-not-allowed">
                 <CameraAltIcon fontSize="large" style={{ color: 'black' }}/>

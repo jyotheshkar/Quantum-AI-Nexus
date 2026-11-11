@@ -32,13 +32,13 @@ sequenceDiagram
   Hook->>Browser: revokeObjectURL
 ```
 
-Previously each Vision render created an unreleased object URL. The hook now owns one URL per selection and releases it on replacement, removal and unmount. Main now clears its pending navigation timer on unmount and ignores repeated launches while navigation is pending. Image bytes remain local to the browser in this implementation.
+Previously each Vision render created an unreleased object URL. The hook now owns one URL per selection and releases it on replacement, removal and unmount. Main now clears its pending navigation timer on unmount and ignores repeated launches while navigation is pending. Image bytes remain local to the browser in this implementation. Vision accepts PNG, JPEG, WebP, GIF and AVIF files up to 5 MiB and rejects empty/unsupported/oversized selections before creating a preview URL. Invalid replacements clear and release the old preview and show a useful error. MIME and compressed-byte checks are client-side limits; they do not establish file authenticity or a decoded-pixel memory limit.
 
 ## Reproduce and maintain
 
 Run from `frontend/`: `npm ci --ignore-scripts --no-audit --no-fund`, `npm test -- --watchAll=false --runInBand`, then `CI=true npm run build`. The checked-in lockfile is authoritative; change it deliberately alongside dependency changes. The workflow runs these commands with a timeout and read-only repository permissions. CI treats lint warnings as errors; the maintained UI builds cleanly. The legacy build toolchain still emits dependency/deprecation notices and needs a separately tested migration.
 
-The preview regression checks repeated renders, file replacement, removal and unmount. Test navigation across all three routes and image reselection before a release. Camera capture remains unavailable and is visibly disabled. Nova's analysis and Astra's numbers are demonstrations and must not be shown as real predictions.
+Five tests cover preview URL reuse/release, empty/unsupported/oversized files, the exact 5 MiB boundary and invalid-replacement feedback in the rendered component. Test navigation across all three routes and image reselection before a release. Camera capture remains unavailable and is visibly disabled. Nova's analysis and Astra's numbers are demonstrations and must not be shown as real predictions.
 
 ## Scalability decisions and remaining work
 
