@@ -4,7 +4,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CloseIcon from '@mui/icons-material/Close';
 import bgImage from './images/bg2.png';
-import ApiIcon from '@mui/icons-material/Api';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const RightBox = () => {
@@ -14,12 +13,6 @@ const RightBox = () => {
     setPopupContent(null);
   };
 
-  // Removed handleButtonClick function as it's no longer needed for Instagram and LinkedIn
-
-  // Specific function for API button click
-  const handleApiButtonClick = () => {
-    setPopupContent("This is the API content you requested!");
-  };
 
   return (
     <div className="max-w-sm h-[200px] rounded-r-full -rotate-90 md:rotate-0 overflow-hidden relative">
@@ -54,7 +47,7 @@ const RightBox = () => {
   </motion.button>
 </a>
 
-<a href="https://www.linkedin.com/in/jyothesh-karnam-5a90241bb/" target="_blank" >
+<a href="https://www.linkedin.com/in/jyothesh-karnam-5a90241bb/" target="_blank" rel="noopener noreferrer">
   <motion.button
     className="text-[#cfb53b] py-2 px-4 w-full hover:shadow-[#E1C564]"
     whileHover={{ scale: 1.1 }}
@@ -63,7 +56,7 @@ const RightBox = () => {
   </motion.button>
 </a>
 
-<a href="https://github.com/jyotheshkar" target="_blank" >
+<a href="https://github.com/jyotheshkar" target="_blank" rel="noopener noreferrer">
         <motion.button
           className="text-[#cfb53b] py-2 px-4 hover:shadow-[#E1C564]"
           // Set to specific API content handler

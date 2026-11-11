@@ -5,16 +5,17 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import backgroundImage from './images/image13.jpg'; // Make sure this path is correct.
+import useObjectUrl from './useObjectUrl';
 
 const Vision = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState({
+  const previewUrl = useObjectUrl(selectedImage);
+  const results = {
+    mode: 'illustrative_only',
     objectsIdentified: ['Object1', 'Object2'],
-    details: 'More detailed analysis here...',
-  });
-  const [error, setError] = useState('');
+    details: 'No image analysis model is connected to this prototype.',
+  };
 
   const handleBackClick = () => {
     navigate('/');
@@ -29,26 +30,6 @@ const Vision = () => {
     }
   };
 
-  const openCamera = () => {
-    console.log("Opening camera...");
-  };
-
-  const handleSubmit = () => {
-    setLoading(true);
-    setError('');
-    console.log("Analyzing image:", selectedImage);
-    
-    // Simulate API call delay
-    setTimeout(() => {
-      setLoading(false);
-      setResults({
-        sentiment: 'Positive',
-        entities: ['Entity1', 'Entity2'],
-        keyPhrases: ['Phrase1', 'Phrase2'],
-        language: 'Detected Language Here',
-      }); // Replace with actual results from your analysis
-    }, 2000);
-  };
 
   return (
     <div 
@@ -75,9 +56,9 @@ const Vision = () => {
                 <input type="file" onChange={handleImageChange} accept="image/*" className="hidden" />
               </label>
 
-              <button onClick={openCamera} className="flex flex-col items-center justify-center bg-[#cfb53b] text-black rounded-lg shadow-lg p-6 hover:bg-opacity-80 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+              <button disabled title="Camera capture is not implemented in this prototype" className="flex flex-col items-center justify-center bg-[#cfb53b] text-black rounded-lg shadow-lg p-6 opacity-60 cursor-not-allowed">
                 <CameraAltIcon fontSize="large" style={{ color: 'black' }}/>
-                <span>Open Camera</span>
+                <span>Camera unavailable</span>
               </button>
             </motion.div>
 
@@ -88,7 +69,7 @@ const Vision = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <img src={URL.createObjectURL(selectedImage)} alt="Preview" className="max-h-60 rounded-lg mt-4"/>
+                <img src={previewUrl || undefined} alt="Preview" className="max-h-60 rounded-lg mt-4"/>
               </motion.div>
             )}
 
@@ -100,13 +81,9 @@ const Vision = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="text-xl font-bold mb-2 text-[#cfb53b]">Analysis Results</h2>
+                <h2 className="text-xl font-bold mb-2 text-[#cfb53b]">Illustrative Results</h2>
                 <div className="text-sm text-[#cfb53b] overflow-auto" style={{ maxHeight: '300px' }}>
-                  {loading ? (
-                    <div className="animate-pulse">Analyzing...</div>
-                  ) : (
-                    <pre>{JSON.stringify(results, null, 2)}</pre>
-                  )}
+                  <pre>{JSON.stringify(results, null, 2)}</pre>
                 </div>
               </motion.div>
             )}

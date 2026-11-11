@@ -135,7 +135,7 @@ const AstraPage = () => {
 
 
 <div className="md:col-span-3 bg-[#1a1a1a] p-6 rounded-lg shadow-xl flex flex-col md:flex-row justify-evenly items-center h-auto md:h-full">
-  <h2 className="text-lg font-semibold text-[#cfb53b] mb-4 md:mb-0">Data Analytics Dashboard</h2>
+  <h2 className="text-lg font-semibold text-[#cfb53b] mb-4 md:mb-0">Data Analytics Dashboard (sample data)</h2>
   <div className="flex justify-center items-center space-x-4">
     {Array.from({ length: 3 }).map((_, index) => {
       // Calculate different filling levels for each donut
