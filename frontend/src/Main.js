@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LeftBox from './Left';
 import RightBox from './RightBox';
@@ -13,14 +13,15 @@ import TokenIcon from '@mui/icons-material/Token';
 const Main = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const navigationTimer = useRef(null);
 
-  useEffect(() => {
-    // Placeholder for any specific loading logic
-  }, [loading, navigate]);
+  useEffect(() => () => clearTimeout(navigationTimer.current), []);
 
   const handleButtonClick = (route) => {
+    if (navigationTimer.current !== null) return;
     setLoading(true);
-    setTimeout(() => {
+    navigationTimer.current = setTimeout(() => {
+      navigationTimer.current = null;
       setLoading(false);
       navigate(route);
     }, 2000);

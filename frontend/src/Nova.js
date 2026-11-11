@@ -48,6 +48,7 @@ const Nova = () => {
 
   return (
     <div className="min-h-screen bg-black text-[#cfb53b] flex flex-col justify-between px-8 py-8">
+      <p role="note">Demonstration only: results are fixed examples, not model analysis.</p>
       <textarea
         className="w-full p-4 rounded-lg bg-[#0a0a0a] border-2 border-[#cfb53b] text-[#cfb53b] placeholder-[#cfb53b]/50"
         value={text}
